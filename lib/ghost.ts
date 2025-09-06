@@ -1,7 +1,7 @@
 import GhostContentAPI from '@tryghost/content-api';
 
 // Only create API instance if we have valid credentials
-let api: GhostContentAPI | null = null;
+let api: InstanceType<typeof GhostContentAPI> | null = null;
 
 if (process.env.GHOST_URL && process.env.GHOST_API_KEY && 
     process.env.GHOST_URL !== 'https://your-ghost-site.com' && 

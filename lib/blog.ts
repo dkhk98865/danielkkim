@@ -58,8 +58,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   
   try {
     const post = await api.posts.read({
-      slug,
-      include: ['tags', 'authors']
+      slug
     });
     return post as Post;
   } catch (error) {

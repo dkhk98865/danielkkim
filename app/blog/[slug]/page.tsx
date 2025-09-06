@@ -1,15 +1,16 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getPostBySlug, formatDate } from '../../lib/blog';
+import { getPostBySlug, formatDate } from '../../../lib/blog';
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -101,7 +102,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Footer */}
       <footer className="mt-16 pt-8 border-t border-gray-200 text-center text-gray-500">
-        <p>&copy; 2024 Daniel's Blog. Built with Next.js and Ghost CMS.</p>
+        <p>&copy; 2024 Daniel&apos;s Blog. Built with Next.js and Ghost CMS.</p>
       </footer>
     </div>
   );

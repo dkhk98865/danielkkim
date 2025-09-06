@@ -8,7 +8,7 @@ export default async function Home() {
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
       <header className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Daniel's Blog</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">Daniel&apos;s Blog</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           Welcome to my personal space where I share thoughts, experiences, and insights.
         </p>
@@ -80,7 +80,7 @@ export default async function Home() {
 
       {/* Footer */}
       <footer className="mt-16 pt-8 border-t border-gray-200 text-center text-gray-500">
-        <p>&copy; 2024 Daniel's Blog. Built with Next.js and Ghost CMS.</p>
+        <p>&copy; 2024 Daniel&apos;s Blog. Built with Next.js and Ghost CMS.</p>
       </footer>
     </div>
   );
