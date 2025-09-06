@@ -13,6 +13,46 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const post = await getPostBySlug(slug);
 
   if (!post) {
+    // Check if this is due to missing Ghost API configuration
+    const api = await import('../../../lib/ghost').then(m => m.default);
+    if (!api) {
+      // Ghost API not configured - show configuration message instead of 404
+      return (
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-8 text-center">
+            <div className="text-yellow-600 mb-4">
+              <svg className="mx-auto h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+            </div>
+            <h1 className="text-2xl font-bold text-yellow-800 mb-4">Ghost CMS Not Configured</h1>
+            <p className="text-yellow-700 mb-6">
+              This blog requires Ghost CMS to be configured with proper environment variables.
+            </p>
+            <div className="bg-yellow-100 rounded-lg p-4 text-left">
+              <h3 className="font-semibold text-yellow-800 mb-2">Required Environment Variables:</h3>
+              <ul className="text-yellow-700 space-y-1">
+                <li><code className="bg-yellow-200 px-2 py-1 rounded">GHOST_URL</code> - Your Ghost CMS URL</li>
+                <li><code className="bg-yellow-200 px-2 py-1 rounded">GHOST_API_KEY</code> - Your Ghost Content API key</li>
+              </ul>
+            </div>
+            <div className="mt-6">
+              <Link 
+                href="/"
+                className="inline-flex items-center text-blue-600 hover:text-blue-800"
+              >
+                <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                Back to Home
+              </Link>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    
+    // Post not found - show 404
     notFound();
   }
 
