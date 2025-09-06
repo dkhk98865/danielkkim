@@ -9,6 +9,7 @@ To deploy this blog to Vercel, you need to configure the following environment v
 1. **GHOST_URL**
    - Your Ghost CMS URL (e.g., `https://your-blog.ghost.io`)
    - This should be the full URL to your Ghost site
+   - **Important**: Do not include a trailing slash (e.g., use `https://your-blog.ghost.io` not `https://your-blog.ghost.io/`)
 
 2. **GHOST_API_KEY**
    - Your Ghost Content API key
@@ -42,3 +43,4 @@ To deploy this blog to Vercel, you need to configure the following environment v
 - If you still see 404 errors, check that your environment variables are correctly set
 - Make sure your Ghost site is publicly accessible
 - Verify that your API key has the correct permissions
+- **Common Error**: If you see "Config Invalid: 'url' must not have a trailing slash", remove the trailing slash from your `GHOST_URL` environment variable

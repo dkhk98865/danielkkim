@@ -8,8 +8,11 @@ if (process.env.GHOST_URL && process.env.GHOST_API_KEY &&
     process.env.GHOST_API_KEY !== 'your-ghost-api-key' &&
     /^[0-9a-f]{26}$/i.test(process.env.GHOST_API_KEY)) {
   try {
+    // Remove trailing slash from URL if present
+    const cleanUrl = process.env.GHOST_URL.replace(/\/$/, '');
+    
     api = new GhostContentAPI({
-      url: process.env.GHOST_URL,
+      url: cleanUrl,
       key: process.env.GHOST_API_KEY,
       version: 'v5.0'
     });
